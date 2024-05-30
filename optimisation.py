@@ -4,8 +4,8 @@ from scipy.optimize import minimize
 
 def calculate_portfolio_performance(weights, mean_returns, cov_matrix, risk_free_rate=0.01):
     """
-    Calculates portfolio performance metrics including annualized return,
-    annualized volatility, and Sharpe Ratio.
+    Calculates portfolio performance metrics including annualised return,
+    annualised volatility, and Sharpe Ratio.
     """
     portfolio_return = np.dot(weights, mean_returns) * 252
     portfolio_volatility = np.sqrt(np.dot(weights.T, np.dot(cov_matrix * 252, weights)))
@@ -14,7 +14,7 @@ def calculate_portfolio_performance(weights, mean_returns, cov_matrix, risk_free
 
 def monte_carlo_simulation(returns, num_simulations=10000, risk_free_rate=0.01):
     """
-    Performs portfolio optimization using Monte Carlo simulation to find
+    Performs portfolio optimisation using Monte Carlo simulation to find
     the portfolio with the highest Sharpe Ratio.
     """
     mean_returns = returns.mean()
@@ -37,9 +37,9 @@ def monte_carlo_simulation(returns, num_simulations=10000, risk_free_rate=0.01):
     
     return max_sharpe_allocation, results[:, max_sharpe_idx]
 
-def optimize_sharpe_ratio(returns, risk_free_rate=0.01):
+def optimise_sharpe_ratio(returns, risk_free_rate=0.01):
     """
-    Directly optimizes the portfolio for the highest Sharpe Ratio using scipy's minimize function.
+    Directly optimises the portfolio for the highest Sharpe Ratio using scipy's minimize function.
     """
     mean_returns = returns.mean()
     cov_matrix = returns.cov()
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     # Example usage with hypothetical returns DataFrame
     returns = pd.DataFrame(np.random.normal(0.001, 0.02, size=(252, 4)))  # Mock data
     max_sharpe_allocation_mc, mc_results = monte_carlo_simulation(returns)
-    optimized_weights_sr = optimize_sharpe_ratio(returns)
+    optimised_weights_sr = optimise_sharpe_ratio(returns)
     
-    print(f"Optimized Weights (Monte Carlo): {max_sharpe_allocation_mc}")
-    print(f"Optimized Weights (Sharpe Ratio Optimization): {optimized_weights_sr}")
+    print(f"Optimised Weights (Monte Carlo): {max_sharpe_allocation_mc}")
+    print(f"Optimised Weights (Sharpe Ratio Optimisation): {optimised_weights_sr}")

@@ -2,16 +2,16 @@ import numpy as np
 import pandas as pd
 from scipy.stats import norm
 
-def calculate_annualized_return(returns):
+def calculate_annualised_return(returns):
     """
-    Calculates the annualized return of a portfolio.
+    Calculates the annualised return of a portfolio.
     """
     compounded_return = (1 + returns).prod() ** (252 / len(returns)) - 1
     return compounded_return
 
-def calculate_annualized_volatility(returns):
+def calculate_annualised_volatility(returns):
     """
-    Calculates the annualized volatility of a portfolio.
+    Calculates the annualised volatility of a portfolio.
     """
     return returns.std() * np.sqrt(252)
 
@@ -21,17 +21,17 @@ def calculate_sharpe_ratio(returns, risk_free_rate=0.01):
     risk-adjusted return. It represents the additional amount of return that an 
     investor receives per unit of increase in risk.
     """
-    annualized_return = calculate_annualized_return(returns)
-    annualized_volatility = calculate_annualized_volatility(returns)
-    return (annualized_return - risk_free_rate) / annualized_volatility
+    annualised_return = calculate_annualised_return(returns)
+    annualised_volatility = calculate_annualised_volatility(returns)
+    return (annualised_return - risk_free_rate) / annualised_volatility
 
 def calculate_treynor_measure(returns, beta, risk_free_rate=0.01):
     """
     Calculates the Treynor Measure of a portfolio. - Similar to the Sharpe ratio,
     but uses beta (market risk) instead of total risk (volatility).
     """
-    annualized_return = calculate_annualized_return(returns)
-    return (annualized_return - risk_free_rate) / beta
+    annualised_return = calculate_annualised_return(returns)
+    return (annualised_return - risk_free_rate) / beta
 
 def calculate_jensens_alpha(returns, market_returns, beta, risk_free_rate=0.01):
     """
@@ -39,10 +39,10 @@ def calculate_jensens_alpha(returns, market_returns, beta, risk_free_rate=0.01):
     portfolio or investment above or below that predicted by the CAPM, given the 
     portfolio's or investment's beta and the average market return.
     """
-    annualized_return = calculate_annualized_return(returns)
-    annualized_market_return = calculate_annualized_return(market_returns)
-    expected_return = risk_free_rate + beta * (annualized_market_return - risk_free_rate)
-    return annualized_return - expected_return
+    annualised_return = calculate_annualised_return(returns)
+    annualised_market_return = calculate_annualised_return(market_returns)
+    expected_return = risk_free_rate + beta * (annualised_market_return - risk_free_rate)
+    return annualised_return - expected_return
 
 def calculate_downside_risk(returns, target=0):
     """
